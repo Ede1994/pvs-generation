@@ -1,5 +1,21 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module creates a 3D window to avoid phase-warping on resampling.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import numpy as np
 
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
 def no_filter_1d(fov_mm_hr: float,
               res_mm_hr: float
               ) -> np.ndarray:
@@ -25,6 +41,7 @@ def no_filter_1d(fov_mm_hr: float,
 
     d_coords = np.arange(-fov_mm_hr / 2.0, fov_mm_hr / 2.0 - res_mm_hr + (res_mm_hr / 2.01) , res_mm_hr) # Small epsilon to include endpoint
     return np.ones_like(d_coords, dtype=float)
+
 
 def butterworth_1d(fov_mm_hr: float,
                 fov_mm_lr: float,
@@ -81,12 +98,13 @@ def butterworth_1d(fov_mm_hr: float,
     w = 1.0 / (1.0 + denominator_term)
     return w
 
+
 def create_window_3d(
     fov_mm_hr: np.ndarray,
     fov_mm_lr: np.ndarray,
     res_mm_hr: np.ndarray,
     is_modified: np.ndarray
-) -> np.ndarray:
+    ) -> np.ndarray:
     r"""
     Builds a separable 3D window to avoid phase-warping on resampling.
 

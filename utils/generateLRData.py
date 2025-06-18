@@ -1,9 +1,26 @@
-import numpy as np
-from Utils.resample import resample_kspace
-from Utils.generateImageSpace import generate_image_space
-from Artefacts.add_noise import add_noise_kspace
-from Artefacts.add_motion_artifacts_rotation_kspace import add_motion_artifacts_rotation_kspace
 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module generates Low Resolution (LR) data from High Resolution (HR) data.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
+import numpy as np
+from utils.resample import resample_kspace
+from utils.generateImageSpace import generate_image_space
+from utils.add_noise import add_noise_kspace
+from utils.add_motion_artifacts_rotation_kspace import add_motion_artifacts_rotation_kspace
+
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
 def generate_lr_data(hr_si: np.ndarray,
                      fov_mm_true: list,
                      n_true: list,
@@ -13,6 +30,33 @@ def generate_lr_data(hr_si: np.ndarray,
                      apply_noise_flag: int,
                      apply_motion_artefacts_flag: int
                    ) -> np.ndarray:
+    r"""
+    Generate Low Resolution (LR) data from High Resolution (HR) data.
+
+    Parameters:
+    ----------
+    hr_si : np.ndarray
+        High Resolution data in image space, can be 3D or 4D.
+    fov_mm_true : list
+        Field of View in mm for the true resolution, should be a list of 3 elements [FOVx, FOVy, FOVz].
+    n_true : list
+        Number of samples in the true resolution, should be a list of 3 elements [Nx, Ny, Nz].
+    sd_noise : float
+        Standard deviation of the noise to be added to the Low Resolution data.
+    fov_mm_acq : list
+        Field of View in mm for the acquisition resolution, should be a list of 3 elements [FOVx, FOVy, FOVz].
+    n_acq : list
+        Number of samples in the acquisition resolution, should be a list of 3 elements [Nx, Ny, Nz].
+    apply_noise_flag : int
+        Flag to indicate whether to apply noise to the Low Resolution data (1 for yes, 0 for no).
+    apply_motion_artefacts_flag : int
+        Flag to indicate whether to apply motion artefacts to the Low Resolution data (1 for yes, 0 for no).
+
+    Returns:
+    -------
+    np.ndarray
+        Low Resolution data in image space after resampling, noise addition, and motion artefacts application.
+    """
     # Main function to generate Low Resolution data from High Resolution data.
     # Ensure inputs are numpy arrays
     fov_mm_true_np = np.array(fov_mm_true, dtype=float)

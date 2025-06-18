@@ -1,5 +1,21 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module selects a single voxel within a neighbourhood as the centre of the PVS.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import numpy as np
 
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
 def summarise_neighbourhood(patch: np.ndarray) -> np.ndarray:
     r"""
     Select a single voxel within a neighbourhood as the centre of the PVS.

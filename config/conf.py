@@ -1,13 +1,20 @@
-## Configuration file
-#  This configuration file allows adding all relevant folders to the
-#  project.
-#  
-# (c) Jose Bernal 2021
-# config.py
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+'''
+This configuration file allows adding all relevant folders to the project.
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import os
 import sys
 
+# ***************************************************************************
+# * Configuration
+# ***************************************************************************
 # limit number of computational threads (e.g., for MKL, OpenMP)
 os.environ.setdefault("OMP_NUM_THREADS", "15")
 os.environ.setdefault("MKL_NUM_THREADS", "15")

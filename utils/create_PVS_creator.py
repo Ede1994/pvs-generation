@@ -1,7 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module generates a PVS (perivascular space) creator function
+with specified characteristics.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import numpy as np
 from scipy.interpolate import RegularGridInterpolator
 from typing import Sequence, Callable
 
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
 def create_PVS_creator(length: float,
                        width: float,
                        NVox: Sequence[int]

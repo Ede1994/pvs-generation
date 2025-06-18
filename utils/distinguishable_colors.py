@@ -1,18 +1,43 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module generates maximally perceptually distinct colors based on the CIELAB color space.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import numpy as np
 from skimage.color import rgb2lab
 from matplotlib.colors import to_rgb
 
-def distinguishable_colors(n_colors, bg='white', lab_func=None):
-    """
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
+def distinguishable_colors(n_colors=int,
+                           bg='white',
+                           lab_func=None
+                           ) -> np.ndarray:
+    r"""
     Generate maximally perceptually distinct colors.
 
     Parameters:
-    - n_colors: int, number of distinct colors to generate
-    - bg: background color(s) (RGB tuple, hex string, color name, or list of these)
-    - lab_func: optional custom RGB to Lab function
-
+    ----------
+    n_colors : int
+        Number of distinct colors to generate.
+    bg : str, tuple, list, or np.ndarray, default='white'
+        Background color(s) to ensure distinctness from. Can be a single color or a list of colors.
+    lab_func : callable, optional
+        Function to convert RGB colors to CIELAB. If None, uses skimage's rgb2lab.
+    
     Returns:
-    - colors: (n_colors x 3) ndarray of RGB values
+    -------
+    np.ndarray
+        Array of shape (n_colors, 3) containing RGB colors in the range [0, 1].
     """
     if lab_func is None:
         lab_func = lambda rgb: rgb2lab(rgb.reshape(-1, 1, 3)).reshape(-1, 3)
@@ -50,8 +75,20 @@ def distinguishable_colors(n_colors, bg='white', lab_func=None):
     return np.array(colors)
 
 
-def _parse_bg(bg):
-    """Parse background color(s) into RGB float array."""
+def _parse_bg(bg) -> np.ndarray:
+    r"""
+    Parse background color(s) into RGB float array.
+
+    Parameters:
+    ----------
+    bg : str, tuple, list, or np.ndarray
+        Background color(s) to parse. Can be a single color or a list of colors.
+    
+    Returns:
+    -------
+    np.ndarray
+        Array of RGB colors in the range [0, 1].
+    """
     if isinstance(bg, (str, tuple, list, np.ndarray)):
         if isinstance(bg, (str, tuple)) or np.array(bg).ndim == 1:
             bg_list = [bg]

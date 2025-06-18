@@ -1,7 +1,23 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module generates a 3D rotation of an sMRI volume.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import numpy as np
 from typing import Sequence as sequence
 from scipy.ndimage import rotate
 
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
 def apply_rotation(SI: np.ndarray,
                    theta: float,
                    dimensions: sequence

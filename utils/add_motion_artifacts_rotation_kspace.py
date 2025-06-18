@@ -1,5 +1,21 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module adds motion artifacts to k-space data by combining segments from different k-spaces.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import numpy as np
 
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
 def add_motion_artifacts_rotation_kspace(k_spaces: np.ndarray,
                                          n_true_acq: np.ndarray
                                          ) -> np.ndarray:

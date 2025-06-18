@@ -1,14 +1,51 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module resamples high-resolution (HR) k-space data to low-resolution (LR) k-space.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import numpy as np
 from scipy.interpolate import interpn
-from Utils.createWindow3D import create_window_3d
-from Utils.generateKSpace import generate_k_space
+from utils.createWindow3D import create_window_3d
+from utils.generateKSpace import generate_k_space
 
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
 def resample_kspace(hr_si: np.ndarray,
                     fov_mm_true: np.ndarray,
                     n_true: np.ndarray,
                     fov_mm_acq: np.ndarray,
                     n_acq: np.ndarray
                     ) -> np.ndarray:
+    r"""
+    Resample high-resolution (HR) k-space data to low-resolution (LR) k-space.
+
+    Parameters
+    ----------
+    hr_si : np.ndarray
+        High-resolution image space data, can be 3D or 4D.
+    fov_mm_true : np.ndarray
+        Field of View in mm for the true resolution, should be a 3-element array [FOVx, FOVy, FOVz].
+    n_true : np.ndarray
+        Number of samples in the true resolution, should be a 3-element array [Nx, Ny, Nz].
+    fov_mm_acq : np.ndarray
+        Field of View in mm for the acquisition resolution, should be a 3-element array [FOVx, FOVy, FOVz].
+    n_acq : np.ndarray
+        Number of samples in the acquisition resolution, should be a 3-element array [Nx, Ny, Nz].
+        
+    Returns
+    -------
+    np.ndarray
+        Low-resolution k-space data after resampling.
+    """
     # Resamples HR image data to LR k-space.
     # Ensure inputs are numpy arrays for vectorized ops
     fov_mm_true = np.array(fov_mm_true)

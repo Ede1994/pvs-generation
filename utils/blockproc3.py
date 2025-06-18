@@ -1,7 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+'''
+This module applies block processing to a 2D or 3D image volume, allowing for
+custom functions to be applied to each block, with optional borders and parallel processing.
+Version:    1.0.0
+Date   :    18.06.2025
+'''
+
+# ***************************************************************************
+# * Import
+# ***************************************************************************
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from typing import Callable, Sequence, Optional, Tuple
 
+
+# ***************************************************************************
+# * Function
+# ***************************************************************************
 def blockproc3(
     im: np.ndarray,
     blksz: Sequence[int],
