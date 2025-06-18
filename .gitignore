@@ -1,0 +1,12 @@
+.vscode
+
+# ignore all pycache folders
+__pycache__/
+# ignore all specific files
+*.env
+*.pyc
+*.log
+
+# ignore input/output folder
+input/
+output/
