@@ -129,7 +129,7 @@ def UU_numba(Fi, G):
     except Exception:  # Changed from np.linalg.LinAlgError to Exception
         # This block will now be Numba-compatible.
         # It will catch LinAlgError as well as any other error during inv_Fi.
-        return np.eye(3, 3, dtype=np.float64)
+        return np.eye(3, 3, k=0, dtype=np.float64) #np.eye(3, dtype=np.float64)
     return Fi @ G @ inv_Fi
 
 
