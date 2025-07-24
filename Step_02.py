@@ -202,7 +202,7 @@ if __name__ == "__main__":
                             # align_vectors(vectors_from, vectors_to)
                             # We want to align a_canonical TO b_vec_normalized
                             Rotation_Matrix_R_for_PVS_template, _ = SciPyRotation.align_vectors(a_canonical.reshape(1,-1), b_vec_normalized.reshape(1,-1))
-                            Rotation_Matrix_R_for_PVS_template = Rotation_Matrix_R_for_PVS_template[0]
+                            Rotation_Matrix_R_for_PVS_template = Rotation_Matrix_R_for_PVS_template.as_matrix() #Rotation_Matrix_R_for_PVS_template[0]
                         except ImportError:
                             # print("Warning: scipy.spatial.transform not available for robust 180-deg rotation. Using FFi/GG/UU which may be inexact.")
                             # Fallback to original method (U.T), acknowledging potential issue for 180-deg
